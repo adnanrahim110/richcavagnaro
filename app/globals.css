@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.85); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes swing {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(15deg); }
+  40% { transform: rotate(-10deg); }
+  60% { transform: rotate(5deg); }
+  80% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+  80% { transform: scale(1.1) translateY(-5px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes tape-rip {
+  0% { clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); opacity: 0; }
+  100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); opacity: 1; }
+}
+
+@theme {
+
+  --color-primary-50: #fffce0;
+  --color-primary-100: #fff7b3;
+  --color-primary-200: #ffef80;
+  --color-primary-300: #ffe54d;
+  --color-primary-400: #ffdb1a;
+  --color-primary-500: #fed100; /* Marker Yellow */
+  --color-primary-600: #ccaa00;
+  --color-primary-700: #998000;
+  --color-primary-800: #665500;
+  --color-primary-900: #332b00;
+  --color-primary-950: #1a1500;
+
+  --color-secondary-50: #e6f2ff;
+  --color-secondary-100: #b3d9ff;
+  --color-secondary-200: #80bfff;
+  --color-secondary-300: #4da6ff;
+  --color-secondary-400: #1a8cff;
+  --color-secondary-500: #007aff; /* Schoolboy Blue */
+  --color-secondary-600: #0062cc;
+  --color-secondary-700: #004999;
+  --color-secondary-800: #003166;
+  --color-secondary-900: #001833;
+  --color-secondary-950: #000c1a;
+
+  --color-accent-50: #ffeceb;
+  --color-accent-100: #ffc9c6;
+  --color-accent-200: #ffa29d;
+  --color-accent-300: #ff7871;
+  --color-accent-400: #ff4d44;
+  --color-accent-500: #ff3b30; /* Marker Red */
+  --color-accent-600: #cc2f26;
+  --color-accent-700: #99231d;
+  --color-accent-800: #661813;
+  --color-accent-900: #330c0a;
+  --color-accent-950: #1a0605;
+
+  --color-green-50: #eafbf0;
+  --color-green-100: #c1f4d2;
+  --color-green-200: #94ecb1;
+  --color-green-300: #64e390;
+  --color-green-400: #37da70;
+  --color-green-500: #18c458;
+  --color-green-600: #119d44;
+  --color-green-700: #0b7532;
+  --color-green-800: #064e21;
+  --color-green-900: #032810;
+  --color-green-950: #011408;
+
+  --color-paper-50: #ffffff;
+  --color-paper-100: #fdfdfc;
+  --color-paper-200: #fcfcf9;
+  --color-paper-300: #fafaf5;
+  --color-paper-400: #f8f8f0;
+  --color-paper-500: #f5f5e8; /* Creamy paper */
+  --color-paper-600: #e6e6d1;
+  --color-paper-700: #d4d4ba;
+
+  --font-display: var(--font-fredoka), sans-serif;
+  --font-body: var(--font-nunito), sans-serif;
+  --font-handwriting: var(--font-caveat), cursive;
+
+  --animate-wiggle: wiggle 0.6s ease-in-out infinite;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-bounce-in: bounce-in 0.4s ease-out both;
+  --animate-swing: swing 2s ease-in-out infinite;
+  --animate-pop-in: pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  --animate-tape-rip: tape-rip 0.4s ease-out forwards;
+
+}
+
+@layer base {
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  html {
+    @apply text-slate-800;
+  }
+
+  body {
+    @apply font-body bg-paper-100 text-slate-800;
+  }
+
+  :is(h1, h2, h3, h4, h5, h6) {
+    @apply font-display font-semibold leading-tight;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  img {
+    @apply block max-w-full h-auto;
+  }
+
+  ::selection {
+    @apply bg-primary-400/60 text-primary-950;
+  }
+
+}
+
+@layer components {
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-display font-semibold uppercase tracking-wide;
+  }
+
+}
+
+@layer utilities {
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+}
