@@ -24,9 +24,48 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Rory Ruckus – Official Website",
+  metadataBase: new URL("https://richcavagnaro.com"),
+  title: {
+    template: "%s | Rich Cavagnaro",
+    default: "Rich Cavagnaro | Children's Book Author",
+  },
   description:
-    "Join Rory Ruckus on a hilarious adventure filled with big imagination, funny mix-ups, and colorful signs!",
+    "The official website of Rich Cavagnaro, author of the hilarious children's book Rory Ruckus. Discover the book, meet the author, and join the fun!",
+  keywords: [
+    "Rich Cavagnaro",
+    "Rory Ruckus",
+    "Children's Books",
+    "Author",
+    "Kids Books",
+    "Funny Books for Kids",
+    "Picture Books",
+  ],
+  authors: [{ name: "Rich Cavagnaro" }],
+  creator: "Rich Cavagnaro",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://richcavagnaro.com",
+    title: "Rich Cavagnaro | Children's Book Author",
+    description:
+      "The official website of Rich Cavagnaro, author of the hilarious children's book Rory Ruckus.",
+    siteName: "Rich Cavagnaro",
+    images: [
+      {
+        url: "/imgs/book-mockup.png",
+        width: 1200,
+        height: 630,
+        alt: "Rory Ruckus by Rich Cavagnaro",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rich Cavagnaro | Children's Book Author",
+    description:
+      "The official website of Rich Cavagnaro, author of the hilarious children's book Rory Ruckus.",
+    images: ["/imgs/book-mockup.png"],
+  },
 };
 
 export default function RootLayout({

@@ -4,9 +4,16 @@ import { MetadataBand } from '@/components/sections/book/MetadataBand';
 import { SharedReviewsSection } from '@/components/sections/shared/SharedReviewsSection';
 import { BookCta } from '@/components/sections/book/BookCta';
 
-export const metadata = {
-  title: 'The Book | Rory Ruckus and his Very Silly Signs',
-  description: 'Learn all about the hilarious picture book Rory Ruckus and his Very Silly Signs by Rich Cavagnaro.',
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'The Book',
+  description: 'Explore "Rory Ruckus", a laugh-out-loud children\'s book full of silly mix-ups and big imaginations. Get your copy today on Amazon!',
+  openGraph: {
+    title: 'Rory Ruckus by Rich Cavagnaro | The Book',
+    description: 'Explore "Rory Ruckus", a laugh-out-loud children\'s book full of silly mix-ups and big imaginations.',
+    url: 'https://richcavagnaro.com/book',
+  },
 };
 
 export default function BookPage() {

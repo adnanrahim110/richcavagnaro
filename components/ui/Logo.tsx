@@ -20,7 +20,7 @@ export function Logo({ className }: { className?: string }) {
       
       <div className="flex flex-col leading-none mt-1">
         <span className="font-display font-black text-2xl tracking-tighter">
-          Rory <span className="text-secondary-600">Ruckus</span>
+          Rich <span className="text-secondary-600">Cavagnaro</span>
         </span>
       </div>
     </Link>
