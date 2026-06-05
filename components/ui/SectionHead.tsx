@@ -53,7 +53,7 @@ export function SectionHead({
             </span>
           </div>
         )}
-        <svg className="absolute -bottom-3 left-0 w-full h-5 text-accent-400 opacity-60 -z-10 animate-wiggle" viewBox="0 0 100 10" preserveAspectRatio="none">
+        <svg className="absolute -bottom-3 left-0 w-full h-5 text-accent-400 opacity-60 z-0" viewBox="0 0 100 10" preserveAspectRatio="none">
           <path d="M0 5 Q 25 10, 50 5 T 100 5" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
         </svg>
       </div>
