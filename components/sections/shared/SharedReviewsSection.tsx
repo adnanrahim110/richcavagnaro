@@ -115,9 +115,7 @@ export function SharedReviewsSection({
                   <ReviewCard
                     quote={review.quote}
                     reviewer={review.reviewer}
-                    role={review.role}
                     stars={review.stars}
-                    source={review.source}
                     className="h-full"
                   />
                 </SwiperSlide>

@@ -1,15 +1,17 @@
 export const author = {
   name: "Rich Cavagnaro",
   tagline: "Dreaming up silly stories to make kids smile, one sign at a time.",
-  bio: `Rich Cavagnaro has always believed that the best stories are the ones that make us laugh until our bellies ache. With a lifelong passion for storytelling and a background in elementary education, Rich knows firsthand the kind of chaotic, joyful humor that resonates with young readers. He loves creating characters that are just a little bit mischievous but bursting with heart.
+  bio: `Rich Cavagnaro has always believed that curiosity is one of life's greatest superpowers. Growing up in a family of teachers and educators, he learned early on that asking questions, thinking creatively, and seeing the world a little differently can lead to wonderful things.
 
-The inspiration for "Rory Ruckus and his Very Silly Signs" came from a real-life afternoon of crafting with his own kids, when a mislabeled box of crayons led to an hour of non-stop giggles. Rich wanted to capture that spontaneous, creative magic and put it into a book that both parents and children could enjoy reading together over and over again.
+As a father of three boys, Rich has spent countless hours surrounded by imagination, laughter, and the wonderfully unpredictable ideas that kids seem to create every day. Those moments helped inspire Rory Ruckus and His Very Silly Signs, a story that celebrates creativity, curiosity, and finding adventure in the ordinary.
 
-When he's not busy writing or dreaming up his next big idea, Rich can usually be found sketching funny cartoons, exploring local parks with his family, or trying (and failing) to build the world's tallest blanket fort. He lives with his wife, two kids, and a very lazy dog who occasionally gets her own silly signs.`,
+Before becoming an author, Rich built and led a successful company that reached customers around the world. Today, he channels that same energy into creating stories, games, and projects that encourage people to think differently and embrace their imagination.
+
+Rich still considers himself a curious kid at heart. And if Rory's mischievous imagination feels a little too real at times... well, there might be a reason for that.`,
   photo: "/imgs/logo.jpg",
   funFacts: [
-    "I once accidentally wore mismatched shoes to a school author visit and convinced the kids it was a new fashion trend.",
-    "My favorite snack while writing is an absurdly large bowl of extra-cheesy popcorn.",
-    "If I wasn't an author, I'd probably be a professional treehouse architect."
-  ]
+    "Rich is a retired entrepreneurial CEO who built and led a company that reached markets around the world.",
+    "Since retiring, he has launched games, written a personal development book on storytelling, and created an autobiography for his family.",
+    "He still considers himself a curious kid at heart, and Rory Ruckus reflects his belief that imagination can turn boredom into brilliance.",
+  ],
 };

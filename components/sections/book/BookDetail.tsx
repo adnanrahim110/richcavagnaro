@@ -58,9 +58,8 @@ export function BookDetail() {
                   key={i}
                   variants={itemVariants}
                   className="font-body text-slate-700 text-base leading-relaxed mb-4"
-                >
-                  {p}
-                </motion.p>
+                  dangerouslySetInnerHTML={{ __html: p }}
+                />
               ))}
             </div>
 

@@ -10,13 +10,18 @@ export const title = "Rory Ruckus and his Very Silly Signs";
 
 export const book = {
   title: title,
-  tagline:
-    "A laugh-out-loud tale about big imagination, funny mix-ups, and the joy of a good sign!",
-  synopsis: `Meet Rory Ruckus, an energetic and immensely creative kid with a very unique hobby: he loves making signs. From warning his parents about "Lava on the Rug" to directing the dog to the "Secret Bone Stash," Rory's colorful creations bring a whole new level of excitement to his home and school. But when his very silly signs start getting mixed up during the school fair, a hilarious chain of events unfolds that will have kids giggling on every page.
+  tagline: "One Bored Kid. One Marker. One Very Silly Idea.",
+  synopsis: `Meet Rory Ruckus, a kid with a BIG imagination and an even bigger talent for turning ordinary things into extraordinary fun.
 
-Perfect for young readers and parents alike, this vibrant picture book celebrates the beauty of boundless imagination and the unintended humor of a child's perspective. It's a fantastic read-aloud choice that keeps kids engaged while subtly encouraging them to practice their own writing and drawing skills in fun, expressive ways.
+      One quiet afternoon at school, Rory notices something strange: signs are everywhere. They're on the walls, above the doors, and around every corner. But Rory has a question...
 
-Educators and librarians will appreciate the gentle social-emotional themes woven throughout the silliness. As Rory learns to communicate his big ideas and navigate the cheerful chaos he creates, children learn that it's okay to make mistakes and that the best solutions often come from working together with a smile.`,
+      <strong>What if they said something a little more interesting?</strong>
+
+      Before long, NO RUNNING becomes NO RUNNING SLOWLY, the LIBRARY turns into the LIE-BRARY, and the entire school is caught in a whirlwind of laughter, confusion, and wonderfully silly chaos.
+
+      As Rory's mischievous sign swaps spread through the hallways, he discovers that words are powerful, creativity is a gift, and even the wildest ideas can lead to something meaningful.
+
+      Perfect for young readers, families, classrooms, and storytime, <strong>Rory Ruckus and His Very Silly Signs</strong> is a laugh-out-loud adventure packed with imagination, wordplay, and heart.`,
   amazonLink: amazonLink,
   ageRange: "4–8 years",
   pageCount: 32,
@@ -26,27 +31,27 @@ Educators and librarians will appreciate the gentle social-emotional themes wove
   highlights: [
     {
       iconName: "Megaphone",
-      title: "Read-Aloud Friendly",
+      title: "Built for Read-Aloud Fun",
       description:
-        "Rhythmic pacing and hilarious dialogue make it a joy to read aloud for storytime.",
+        "Playful pacing, funny sign changes, and expressive scenes make Rory’s story easy to enjoy at home, in classrooms, and during storytime.",
     },
     {
       iconName: "Heart",
-      title: "Social-Emotional Learning",
+      title: "Creativity That Learns Its Lesson",
       description:
-        "Subtly teaches kids about clear communication, empathy, and working together.",
+        "Rory’s imagination begins with mischief, but the story gently shows how bright ideas can become helpful when guided with care.",
     },
     {
       iconName: "BookOpen",
-      title: "Classroom Approved",
+      title: "Great for Classroom Conversations",
       description:
-        "A favorite among teachers for inspiring creative writing and classroom activities.",
+        "A strong fit for discussions about words, rules, responsibility, creative thinking, and how small choices can make a big difference.",
     },
     {
       iconName: "Smile",
-      title: "Laugh-Out-Loud Humor",
+      title: "Silly Signs Kids Will Remember",
       description:
-        "Packed with visual gags and funny misunderstandings that kids absolutely love.",
+        "Packed with mixed-up signs, school-day confusion, and visual surprises that give young readers plenty to giggle about.",
     },
   ] as BookHighlight[],
 };
