@@ -23,9 +23,9 @@ export const book = {
 
       Perfect for young readers, families, classrooms, and storytime, <strong>Rory Ruckus and His Very Silly Signs</strong> is a laugh-out-loud adventure packed with imagination, wordplay, and heart.`,
   amazonLink: amazonLink,
-  ageRange: "4–8 years",
-  pageCount: 32,
-  publishedYear: "2024",
+  ageRange: "3+ years",
+  pageCount: 40,
+  publishedYear: "2026",
   coverImage: "/imgs/book-front.jpg",
   backCoverImage: "/imgs/book-mockup.png",
   highlights: [

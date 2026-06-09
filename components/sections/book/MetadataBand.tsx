@@ -24,7 +24,7 @@ export function MetadataBand() {
     { icon: BookOpen, label: "Pages", value: book.pageCount },
     { icon: Users, label: "Ages", value: book.ageRange },
     { icon: Calendar, label: "Published", value: book.publishedYear },
-    { icon: Tag, label: "Genre", value: "Picture Book" },
+    { icon: Tag, label: "Genre", value: "Children's Picture Book" },
   ];
 
   return (
@@ -39,9 +39,9 @@ export function MetadataBand() {
         >
           {metadata.map((item, index) => {
             return (
-              <motion.div 
-                key={index} 
-                variants={itemVariants} 
+              <motion.div
+                key={index}
+                variants={itemVariants}
                 className="flex flex-col items-center text-center px-6 py-4 md:py-0 border-r border-secondary-200 even:border-r-0 md:even:border-r last:border-r-0"
               >
                 <item.icon size={24} className="text-secondary-600" />
