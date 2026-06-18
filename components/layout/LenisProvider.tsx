@@ -5,7 +5,9 @@ import Lenis from 'lenis';
 
 export default function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      allowNestedScroll: true,
+    });
 
     let rafId: number;
 

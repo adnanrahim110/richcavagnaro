@@ -5,6 +5,7 @@ export * from './SectionHead';
 export * from './Title';
 export * from './Card';
 export * from './ReviewCard';
+export * from './ReviewModal';
 export * from './Badge';
 export * from './FloatingDoodle';
 export * from './Logo';

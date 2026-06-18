@@ -4,12 +4,13 @@ import {
   Container,
   FloatingDoodle,
   ReviewCard,
+  ReviewModal,
   Section,
   SectionHead,
 } from "@/components/ui";
 import { reviews } from "@/content/reviews";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -44,6 +45,7 @@ export function SharedReviewsSection({
 }: SharedReviewsSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeReviewIndex, setActiveReviewIndex] = useState<number | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -95,7 +97,11 @@ export function SharedReviewsSection({
             <Swiper
               modules={[Pagination, Autoplay]}
               spaceBetween={24}
-              slidesPerView="auto"
+              slidesPerView={1}
+              breakpoints={{
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
               pagination={{
                 clickable: true,
                 totalClass: "swiper-pagination",
@@ -107,18 +113,14 @@ export function SharedReviewsSection({
               className="px-3.5! *:items-stretch"
             >
               {displayReviews.map((review, index) => {
-                const estimatedWidth = Math.max(280, review.quote.length * 1.05 + 64);
-
                 return (
-                  <SwiperSlide
-                    key={index}
-                    className="h-120! py-12"
-                    style={{ width: `${estimatedWidth}px` }}
-                  >
+                  <SwiperSlide key={index} className="py-12">
                     <ReviewCard
                       quote={review.quote}
                       reviewer={review.reviewer}
                       className="h-full"
+                      truncateLength={160}
+                      onReadMore={() => setActiveReviewIndex(index)}
                     />
                   </SwiperSlide>
                 );
@@ -127,6 +129,24 @@ export function SharedReviewsSection({
           </motion.div>
         </motion.div>
       </Container>
+
+      <ReviewModal
+        isOpen={activeReviewIndex !== null}
+        onClose={() => setActiveReviewIndex(null)}
+        review={activeReviewIndex !== null ? displayReviews[activeReviewIndex] : null}
+        onNext={() => {
+          if (activeReviewIndex !== null && activeReviewIndex < displayReviews.length - 1) {
+            setActiveReviewIndex(activeReviewIndex + 1);
+          }
+        }}
+        onPrev={() => {
+          if (activeReviewIndex !== null && activeReviewIndex > 0) {
+            setActiveReviewIndex(activeReviewIndex - 1);
+          }
+        }}
+        hasNext={activeReviewIndex !== null && activeReviewIndex < displayReviews.length - 1}
+        hasPrev={activeReviewIndex !== null && activeReviewIndex > 0}
+      />
     </Section>
   );
 }

@@ -73,7 +73,7 @@ export function BookDetail() {
                   alt={`${title} back cover`}
                   width={320}
                   height={400}
-                  className="w-full h-auto relative z-10 scale-120 -ml-10"
+                  className="w-full h-auto relative z-10 md:scale-120 md:-ml-10"
                 />
               </div>
             </motion.div>

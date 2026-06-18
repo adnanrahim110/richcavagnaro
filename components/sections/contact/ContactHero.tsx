@@ -22,7 +22,7 @@ export function ContactHero() {
   return (
     <section className="relative min-h-[45vh] flex items-center bg-secondary-50 overflow-hidden py-20">
       {/* Decorative SVG Paper Plane */}
-      <svg className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 w-[300px] h-[300px] text-secondary-200 opacity-40 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+      <svg className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 w-40 h-40 md:w-[300px] md:h-[300px] text-secondary-200 opacity-40 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
         <path d="M22 2L11 13" />
         <path d="M22 2L15 22L11 13L2 9L22 2Z" fill="currentColor" />
       </svg>

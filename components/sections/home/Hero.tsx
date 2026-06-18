@@ -38,14 +38,14 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center bg-paper-100 overflow-hidden border-b-8 border-primary-500">
       <svg
-        className="absolute top-20 left-10 w-64 h-64 text-primary-200 fill-current opacity-30 pointer-events-none"
+        className="absolute top-20 left-10 w-32 h-32 md:w-64 md:h-64 text-primary-200 fill-current opacity-30 pointer-events-none"
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
       >
         <circle cx="100" cy="100" r="100" />
       </svg>
       <svg
-        className="absolute bottom-20 right-10 w-80 h-80 text-secondary-200 fill-current opacity-30 pointer-events-none"
+        className="absolute bottom-20 right-10 w-40 h-40 md:w-80 md:h-80 text-secondary-200 fill-current opacity-30 pointer-events-none"
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -55,7 +55,7 @@ export function Hero() {
         />
       </svg>
       <svg
-        className="absolute top-1/3 right-1/4 w-32 h-32 text-accent-200 fill-current opacity-40 pointer-events-none"
+        className="absolute top-1/3 right-1/4 w-16 h-16 md:w-32 md:h-32 text-accent-200 fill-current opacity-40 pointer-events-none"
         viewBox="0 0 200 200"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -75,21 +75,21 @@ export function Hero() {
         >
           <div className="w-full md:w-[55%] flex flex-col items-center md:items-start text-center md:text-left relative">
             <svg
-              className="absolute -top-10 -left-10 w-16 h-16 text-primary-400 fill-current animate-float"
+              className="absolute -top-10 -left-10 w-8 h-8 md:w-16 md:h-16 text-primary-400 fill-current animate-float"
               style={{ animationDelay: "0s" }}
               viewBox="0 0 24 24"
             >
               <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
             </svg>
             <svg
-              className="absolute top-1/2 -right-8 w-12 h-12 text-accent-400 fill-current animate-wiggle"
+              className="absolute top-1/2 -right-8 w-6 h-6 md:w-12 md:h-12 text-accent-400 fill-current animate-wiggle"
               style={{ animationDelay: "1s" }}
               viewBox="0 0 24 24"
             >
               <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
             </svg>
             <svg
-              className="absolute -bottom-8 left-10 w-8 h-8 text-primary-400 fill-current animate-float"
+              className="absolute -bottom-8 left-10 w-4 h-4 md:w-8 md:h-8 text-primary-400 fill-current animate-float"
               style={{ animationDelay: "0.5s" }}
               viewBox="0 0 24 24"
             >

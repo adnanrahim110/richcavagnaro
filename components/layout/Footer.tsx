@@ -146,28 +146,38 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="absolute top-6 right-8 lg:right-16 origin-top animate-swing z-10 hidden md:block">
-          <div className="relative bg-primary-300 border-4 border-slate-900 p-3 shadow-[6px_6px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center rotate-3 transform hover:rotate-6 transition-transform cursor-pointer group w-48">
-            <div className="absolute -top-8 left-6 w-1 h-8 bg-slate-500"></div>
-            <div className="absolute -top-8 right-6 w-1 h-8 bg-slate-500"></div>
+        <div className="absolute top-4 right-2 sm:top-6 sm:right-6 md:top-6 md:right-8 lg:right-16 z-20 scale-[0.6] sm:scale-75 md:scale-100 origin-top-right pointer-events-none md:pointer-events-auto">
+          <div className="relative w-48">
+            {/* Static hooks pinned to the top */}
             <div
-              className="absolute -top-10 left-4 w-6 h-5 bg-accent-500 rotate-12"
+              className="absolute top-0 left-4 w-6 h-5 bg-accent-500 rotate-12 z-30"
               style={{ clipPath: "polygon(5% 0, 95% 5%, 100% 95%, 0 100%)" }}
             ></div>
             <div
-              className="absolute -top-10 right-4 w-6 h-5 bg-accent-500 -rotate-12"
+              className="absolute top-0 right-4 w-6 h-5 bg-accent-500 -rotate-12 z-30"
               style={{ clipPath: "polygon(0 5%, 100% 0, 95% 100%, 5% 95%)" }}
             ></div>
 
-            <span className="font-display font-black text-slate-900 text-[9px] uppercase tracking-widest block text-center line-through decoration-2 decoration-accent-500 opacity-80">
-              Riverside Learning
-            </span>
-            <span className="font-handwriting font-bold text-accent-500 text-xl block text-center -rotate-6 drop-shadow-sm z-10 group-hover:scale-110 transition-transform my-0.5 leading-tight">
-              Riverslide Recess!
-            </span>
-            <span className="font-display font-black text-slate-900 text-[9px] uppercase tracking-widest block text-center opacity-80 mt-1">
-              Elementary
-            </span>
+            {/* Clipping container to hide the top of the strings as they slide up/down, without clipping sides */}
+            <div className="absolute top-2 left-0 w-full" style={{ clipPath: "inset(0 -100px -100px -100px)" }}>
+              <div className="animate-swing pointer-events-auto mt-8" style={{ transformOrigin: "50% -30px" }}>
+                <div className="relative bg-primary-300 border-4 border-slate-900 p-3 shadow-[6px_6px_0px_rgba(0,0,0,1)] flex flex-col items-center justify-center rotate-3 transform hover:rotate-6 transition-transform cursor-pointer group w-full">
+                  {/* Longer strings that slide safely behind the clip path */}
+                  <div className="absolute -top-16 left-6 w-1 h-16 bg-slate-500"></div>
+                  <div className="absolute -top-16 right-6 w-1 h-16 bg-slate-500"></div>
+
+                  <span className="font-display font-black text-slate-900 text-[9px] uppercase tracking-widest block text-center line-through decoration-2 decoration-accent-500 opacity-80">
+                    Riverside Learning
+                  </span>
+                  <span className="font-handwriting font-bold text-accent-500 text-xl block text-center -rotate-6 drop-shadow-sm z-10 group-hover:scale-110 transition-transform my-0.5 leading-tight">
+                    Riverslide Recess!
+                  </span>
+                  <span className="font-display font-black text-slate-900 text-[9px] uppercase tracking-widest block text-center opacity-80 mt-1">
+                    Elementary
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

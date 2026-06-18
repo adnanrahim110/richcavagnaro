@@ -9,9 +9,10 @@ export function Logo({ className }: { className?: string }) {
         <Image
           src="/imgs/logo.png"
           alt="Rich Cavagnaro Logo"
-          width={40}
-          height={40}
-        />{" "}
+          width={400}
+          height={400}
+          className="w-10 h-auto"
+        />
       </div>
       <div className="flex flex-col leading-none mt-1">
         <span className="font-display font-black text-2xl tracking-tighter">
