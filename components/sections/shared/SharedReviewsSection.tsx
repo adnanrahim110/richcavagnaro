@@ -95,7 +95,7 @@ export function SharedReviewsSection({
             <Swiper
               modules={[Pagination, Autoplay]}
               spaceBetween={24}
-              slidesPerView={1}
+              slidesPerView="auto"
               pagination={{
                 clickable: true,
                 totalClass: "swiper-pagination",
@@ -104,22 +104,25 @@ export function SharedReviewsSection({
                 bulletActiveClass: "!opacity-100 !bg-primary-600",
               }}
               autoplay={{ delay: 5000, disableOnInteraction: false }}
-              breakpoints={{
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-              }}
-              className="px-3.5! *:items-center"
+              className="px-3.5! *:items-stretch"
             >
-              {displayReviews.map((review, index) => (
-                <SwiperSlide key={index} className="h-auto py-12">
-                  <ReviewCard
-                    quote={review.quote}
-                    reviewer={review.reviewer}
-                    stars={review.stars}
-                    className="h-full"
-                  />
-                </SwiperSlide>
-              ))}
+              {displayReviews.map((review, index) => {
+                const estimatedWidth = Math.max(280, review.quote.length * 1.05 + 64);
+
+                return (
+                  <SwiperSlide
+                    key={index}
+                    className="h-120! py-12"
+                    style={{ width: `${estimatedWidth}px` }}
+                  >
+                    <ReviewCard
+                      quote={review.quote}
+                      reviewer={review.reviewer}
+                      className="h-full"
+                    />
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </motion.div>
         </motion.div>

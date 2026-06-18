@@ -64,7 +64,7 @@ export function AuthorIntro() {
                   src={author.photo}
                   alt={author.name}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                  className="object-cover"
                 />
               </div>
               <div className="absolute bottom-2 left-0 w-full text-center">
@@ -82,7 +82,7 @@ export function AuthorIntro() {
                 heading={home.authorSection.heading}
                 size="sm"
                 align="left"
-                className="md:items-start! md:!text-left"
+                className="md:items-start! md:text-left!"
               />
             </motion.div>
 
@@ -101,7 +101,7 @@ export function AuthorIntro() {
                 <div key={index} className="flex flex-row items-start">
                   <Sparkles
                     size={16}
-                    className="text-primary-500 flex-shrink-0 mt-0.5"
+                    className="text-primary-500 shrink-0 mt-0.5"
                   />
                   <p className="font-body text-sm text-slate-700 ml-2">
                     {fact}

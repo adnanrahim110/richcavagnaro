@@ -6,21 +6,15 @@ import { Card } from "./Card";
 export interface ReviewCardProps {
   quote: string;
   reviewer: string;
-  stars: number;
   className?: string;
 }
 
-export function ReviewCard({
-  quote,
-  reviewer,
-  stars,
-  className,
-}: ReviewCardProps) {
+export function ReviewCard({ quote, reviewer, className }: ReviewCardProps) {
   return (
     <Card
       variant="elevated"
       className={cn(
-        "flex flex-col justify-between relative bg-primary-50 rotate-1 hover:-rotate-1 transition-transform",
+        "flex flex-col justify-between relative w-full bg-primary-50 rotate-1 hover:-rotate-1 transition-transform",
         className,
       )}
     >
@@ -40,15 +34,6 @@ export function ReviewCard({
           {quote}
         </p>
         <div className="flex flex-col gap-1 mt-auto">
-          <div className="flex items-center gap-1 mb-2">
-            {Array.from({ length: stars }).map((_, i) => (
-              <Star
-                key={i}
-                size={16}
-                className="fill-current text-primary-400"
-              />
-            ))}
-          </div>
           <p className="font-display font-semibold text-slate-800 text-sm">
             {reviewer}
           </p>

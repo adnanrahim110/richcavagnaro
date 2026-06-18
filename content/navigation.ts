@@ -4,17 +4,17 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Book', href: '/book' },
-  { label: 'Author', href: '/author' },
-  { label: 'Contact', href: '/contact' },
+  { label: "Home", href: "/" },
+  { label: "Book", href: "/book" },
+  { label: "Author", href: "/author" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const footerLinks: NavLink[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Book', href: '/book' },
-  { label: 'Author', href: '/author' },
-  { label: 'Contact', href: '/contact' },
+  { label: "Home", href: "/" },
+  { label: "Book", href: "/book" },
+  { label: "Author", href: "/author" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export interface SocialLink {
@@ -24,7 +24,19 @@ export interface SocialLink {
 }
 
 export const socialLinks: SocialLink[] = [
-  { label: 'Facebook', href: '#', iconName: 'Facebook' },
-  { label: 'Instagram', href: '#', iconName: 'Instagram' },
-  { label: 'Twitter/X', href: '#', iconName: 'Twitter' },
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/richcavagnarobooks/",
+    iconName: "Facebook",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/richcavagnarobooks/",
+    iconName: "Instagram",
+  },
+  {
+    label: "X (Twitter)",
+    href: "https://x.com/RichCavagnaro",
+    iconName: "Twitter",
+  },
 ];
