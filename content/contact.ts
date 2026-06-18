@@ -65,7 +65,7 @@ export const contact = {
     }
   ] as FormField[],
   successMessage: {
-    heading: "Message Received! 🎉",
-    body: "Thank you so much for reaching out! I'm reading your message now and will get back to you as soon as I finish making this very silly sign."
+    heading: "Message Received",
+    body: "Thank you for reaching out to Rich Cavagnaro Books. Your note has been sent, and the team will review it and respond as soon as possible."
   }
 };

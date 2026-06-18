@@ -4,7 +4,7 @@ export const home = {
   hero: {
     headline: "Warning: This Book May Cause Giggles!",
     subheadline:
-      "Subheading:Meet Rory Ruckus at Riverside Learning Elementary, where one tiny idea turns ordinary school signs into hilarious mix-ups, hallway chaos, and a heartfelt lesson about creativity, choices, and the power of words.",
+      "Meet Rory Ruckus at Riverside Learning Elementary, where one tiny idea turns ordinary school signs into hilarious mix-ups, hallway chaos, and a heartfelt lesson about creativity, choices, and the power of words.",
     primaryCtaLabel: "Buy on Amazon",
     primaryCtaHref: amazonLink,
     secondaryCtaLabel: "Learn More",

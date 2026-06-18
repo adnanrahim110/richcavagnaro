@@ -1,6 +1,7 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import LenisProvider from "@/components/layout/LenisProvider";
+import ToastProvider from "@/components/layout/ToastProvider";
 import type { Metadata } from "next";
 import { Caveat, Fredoka, Nunito } from "next/font/google";
 import "./globals.css";
@@ -24,7 +25,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://richcavagnaro.com"),
+  metadataBase: new URL("https://richcavagnarobooks.com"),
   title: {
     template: "%s | Rich Cavagnaro",
     default: "Rich Cavagnaro | Children's Book Author",
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://richcavagnaro.com",
+    url: "https://richcavagnarobooks.com",
     title: "Rich Cavagnaro | Children's Book Author",
     description:
       "The official website of Rich Cavagnaro, author of the hilarious children's book Rory Ruckus.",
@@ -83,6 +84,7 @@ export default function RootLayout({
           <Header />
           <main className="pt-18 flex-1">{children}</main>
           <Footer />
+          <ToastProvider />
         </LenisProvider>
       </body>
     </html>

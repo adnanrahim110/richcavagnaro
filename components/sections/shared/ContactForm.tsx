@@ -1,35 +1,45 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, BookOpen, CheckCircle2, Loader2, Mail, RotateCcw } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { contact } from '@/content/contact';
-import { amazonLink } from '@/content/book';
 import { Button } from '@/components/ui';
+import { submitForm } from '@/utils/formSubmit';
+
+const fieldClassName =
+  'w-full border-2 border-slate-200 rounded-xl px-4 py-3 font-body text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-slate-900 transition resize-y';
 
 export function ContactForm() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [values, setValues] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const validate = (name: string, value: string) => {
     const field = contact.formFields.find(f => f.name === name);
     if (!field) return '';
     
     if (field.required && (!value || value.trim() === '')) {
-      return 'This field is required';
+      return `${field.label} is required.`;
+    }
+
+    if (field.name === 'name' && value.trim().length > 0 && value.trim().length < 2) {
+      return 'Please enter your full name.';
     }
     
     if (field.type === 'email' && value) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(value)) {
-        return 'Please enter a valid email address';
+        return 'Please enter a valid email address.';
       }
     }
     
     if (field.validation?.maxLength && value && value.length > field.validation.maxLength) {
-      return `Maximum ${field.validation.maxLength} characters allowed`;
+      return `Please keep this under ${field.validation.maxLength} characters.`;
     }
     
     return '';
@@ -49,8 +59,10 @@ export function ContactForm() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (submitting) return;
+
     const newErrors: Record<string, string> = {};
     const newTouched: Record<string, boolean> = {};
     let hasErrors = false;
@@ -66,24 +78,82 @@ export function ContactForm() {
     setTouched(newTouched);
     
     if (!hasErrors) {
-      setSubmitted(true);
+      setSubmitting(true);
+
+      const result = await submitForm({
+        formData: new FormData(e.currentTarget),
+        requiredFields: contact.formFields
+          .filter((field) => field.required)
+          .map((field) => field.name),
+        extraFields: {
+          formName: 'contact',
+          source: 'Rich Cavagnaro Books contact form',
+        },
+      });
+
+      setSubmitting(false);
+
+      if (result.success) {
+        toast.success('Your message was sent to Rich Cavagnaro Books.');
+        setSubmitted(true);
+        window.setTimeout(() => {
+          containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
+        return;
+      }
+
+      if (result.validationErrors) {
+        setErrors((prev) => ({ ...prev, ...result.validationErrors }));
+        setTouched((prev) => ({
+          ...prev,
+          ...Object.keys(result.validationErrors).reduce<Record<string, boolean>>((acc, key) => {
+            acc[key] = true;
+            return acc;
+          }, {}),
+        }));
+        toast.error('Please review the highlighted fields.');
+        return;
+      }
+
+      toast.error(
+        result.error ||
+          'We could not send your message right now. Please try again in a moment.'
+      );
     }
   };
 
+  const handleReset = () => {
+    setValues({});
+    setTouched({});
+    setErrors({});
+    setSubmitted(false);
+  };
+
   return (
-    <AnimatePresence mode="wait">
-      {!submitted ? (
-        <motion.form
+    <div ref={containerRef}>
+      <AnimatePresence mode="wait">
+        {!submitted ? (
+          <motion.form
           key="form"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           onSubmit={handleSubmit}
+          noValidate
         >
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+            aria-hidden="true"
+          />
           {contact.formFields.map(field => (
             <div key={field.name} className="mb-6">
               <label htmlFor={field.id} className="block font-display text-sm font-semibold text-slate-700 mb-2">
                 {field.label}
+                {field.required && <span className="text-accent-600"> *</span>}
               </label>
               {field.type === 'textarea' ? (
                 <textarea
@@ -93,8 +163,12 @@ export function ContactForm() {
                   value={values[field.name] || ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  required={field.required}
+                  maxLength={field.validation?.maxLength}
                   rows={4}
-                  className="w-full border border-slate-200 rounded-xl px-4 py-3 font-body text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition resize-y"
+                  aria-invalid={Boolean(touched[field.name] && errors[field.name])}
+                  aria-describedby={`${field.id}-error`}
+                  className={fieldClassName}
                 />
               ) : (
                 <input
@@ -105,42 +179,64 @@ export function ContactForm() {
                   value={values[field.name] || ''}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="w-full border border-slate-200 rounded-xl px-4 py-3 font-body text-slate-800 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent transition"
+                  required={field.required}
+                  maxLength={field.validation?.maxLength}
+                  pattern={field.validation?.pattern}
+                  aria-invalid={Boolean(touched[field.name] && errors[field.name])}
+                  aria-describedby={`${field.id}-error`}
+                  className={fieldClassName}
                 />
               )}
               {touched[field.name] && errors[field.name] && (
-                <p className="text-accent-600 text-sm font-body mt-1">{errors[field.name]}</p>
+                <p id={`${field.id}-error`} className="text-accent-600 text-sm font-body mt-1">
+                  {errors[field.name]}
+                </p>
               )}
             </div>
           ))}
-          <Button variant="primary" size="lg" type="submit" className="w-full">
-            Submit
+          <Button
+            variant="primary"
+            size="lg"
+            type="submit"
+            className="w-full"
+            icon={submitting ? Loader2 : Mail}
+            disabled={submitting}
+          >
+            {submitting ? 'Sending...' : 'Send Message'}
           </Button>
-        </motion.form>
-      ) : (
-        <motion.div
+          </motion.form>
+        ) : (
+          <motion.div
           key="success"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.96, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.96, y: -16 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
           className="text-center py-8"
         >
-          <CheckCircle2 size={64} className="mx-auto text-green-500 animate-bounce-in" />
+          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-2 border-slate-900 bg-green-100 shadow-[5px_5px_0px_0px_rgba(15,23,42,1)]">
+            <CheckCircle2 size={48} className="text-green-600 animate-bounce-in" />
+          </div>
           <h3 className="font-display font-bold text-slate-800 text-2xl mt-6">
             {contact.successMessage.heading}
           </h3>
           <p className="font-body text-slate-600 text-base mt-3 max-w-md mx-auto">
             {contact.successMessage.body}
           </p>
-          <div className="flex gap-4 justify-center mt-8">
-            <Button variant="ghost" href="/">
-              Back to Home
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+            <Button variant="primary" href="/book" icon={BookOpen}>
+              Explore the Book
             </Button>
-            <Button variant="primary" href={amazonLink} external>
-              Get the Book
+            <Button variant="outline" href="/" icon={ArrowLeft}>
+              Back Home
+            </Button>
+            <Button variant="ghost" type="button" icon={RotateCcw} onClick={handleReset}>
+              Send Another
             </Button>
           </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
