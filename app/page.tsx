@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "Rich Cavagnaro | Children's Book Author",
     description:
       "Welcome to the official website of Rich Cavagnaro, author of the hilarious children's adventure book, Rory Ruckus.",
-    url: "https://richcavagnarobooks.com/",
+    url: "https://rory-ruckus.com/",
   },
 };
 

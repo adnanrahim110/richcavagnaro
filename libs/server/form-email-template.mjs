@@ -1,22 +1,25 @@
-<?php
+import { escapeHtml } from "./html.mjs";
 
-function render_form_email(array $data): string {
-  $meta   = $data['meta']   ?? [];
-  $rows   = $data['rows']   ?? [];
-  $sender = $data['sender'] ?? [];
+export function renderFormEmail({ meta = {}, rows = [], sender = {} }) {
+  const title = meta.title || "New Rich Cavagnaro Books Inquiry";
+  const dateStr = meta.dateStr || "";
+  const serviceChips = meta.serviceChips || "";
 
-  $title        = $meta['title']        ?? 'New Rich Cavagnaro Books Inquiry';
-  $dateStr      = $meta['dateStr']      ?? '';
-  $serviceChips = $meta['serviceChips'] ?? '';
+  const rowsHtml = rows
+    .map(
+      (r) => `<tr>
+  <th class="kv-label">${escapeHtml(r.label)}</th>
+  <td>${r.value}</td>
+</tr>`
+    )
+    .join("");
 
-  ob_start(); ?>
-<!doctype html>
+  return `<!doctype html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></title>
+  <title>${escapeHtml(title)}</title>
   <style>
   body {
     margin: 0;
@@ -27,13 +30,11 @@ function render_form_email(array $data): string {
     color: #1a1a1a;
     -webkit-text-size-adjust: 100%;
   }
-
   .wrapper {
     width: 100%;
     background: #fffce0;
     padding: 32px 16px;
   }
-
   .container {
     max-width: 640px;
     margin: 0 auto;
@@ -43,33 +44,28 @@ function render_form_email(array $data): string {
     overflow: hidden;
     box-shadow: 8px 8px 0 rgba(15, 23, 42, 0.18);
   }
-
   .header {
     background: #fed100;
     color: #0f172a;
     padding: 28px 32px;
     border-bottom: 2px solid #0f172a;
   }
-
   .title {
     margin: 0;
     font-size: 22px;
     font-weight: 700;
     color: #0f172a;
   }
-
   .subtitle {
     margin: 6px 0 0 0;
     font-size: 13px;
     color: #334155;
   }
-
   .badgebar {
     padding: 14px 32px;
     background: #e6f2ff;
     border-bottom: 2px solid #0f172a;
   }
-
   .chip {
     display: inline-block;
     margin: 4px 6px 4px 0;
@@ -81,24 +77,20 @@ function render_form_email(array $data): string {
     font-size: 12px;
     font-weight: 600;
   }
-
   .section {
     padding: 24px 32px;
   }
-
   .intro {
     margin: 0 0 18px 0;
     color: #334155;
     font-size: 15px;
   }
-
   .card {
     border: 2px solid #0f172a;
     border-radius: 10px;
     overflow: hidden;
     margin: 0 0 20px 0;
   }
-
   .card-h {
     background: #007aff;
     border-bottom: 2px solid #0f172a;
@@ -107,18 +99,15 @@ function render_form_email(array $data): string {
     font-weight: 700;
     color: #ffffff;
   }
-
   .table {
     width: 100%;
     border-collapse: collapse;
   }
-
   .table th,
   .table td {
     padding: 13px 20px;
     vertical-align: top;
   }
-
   .table th {
     width: 38%;
     background: #fcfcf9;
@@ -128,26 +117,21 @@ function render_form_email(array $data): string {
     border-bottom: 1px solid #e2e8f0;
     text-align: left;
   }
-
   .table td {
     font-size: 14px;
     color: #1a1a1a;
     border-bottom: 1px solid #e2e8f0;
   }
-
   .table tr:last-child th,
   .table tr:last-child td {
     border-bottom: none;
   }
-
   .table tr:nth-child(even) th {
     background: #fff;
   }
-
   .kv-label {
     white-space: nowrap;
   }
-
   .footer {
     padding: 20px 32px;
     background: #fcfcf9;
@@ -156,57 +140,24 @@ function render_form_email(array $data): string {
     text-align: center;
     border-top: 2px solid #0f172a;
   }
-
-  .footer a {
-    color: #007aff;
-    text-decoration: none;
-  }
-
   @media (max-width: 600px) {
-    .wrapper {
-      padding: 16px 8px;
-    }
-
-    .header {
-      padding: 22px 20px;
-    }
-
-    .section {
-      padding: 20px 16px;
-    }
-
-    .badgebar {
-      padding: 12px 16px;
-    }
-
-    .table th,
-    .table td {
-      padding: 11px 14px;
-      font-size: 13px;
-    }
-
-    .card-h {
-      padding: 12px 16px;
-      font-size: 14px;
-    }
+    .wrapper { padding: 16px 8px; }
+    .header { padding: 22px 20px; }
+    .section { padding: 20px 16px; }
+    .badgebar { padding: 12px 16px; }
+    .table th, .table td { padding: 11px 14px; font-size: 13px; }
+    .card-h { padding: 12px 16px; font-size: 14px; }
   }
   </style>
 </head>
-
 <body>
   <div class="wrapper">
     <div class="container">
       <div class="header">
-        <h1 class="title"><?= htmlspecialchars($title, ENT_QUOTES, 'UTF-8') ?></h1>
-        <?php if ($dateStr): ?>
-          <p class="subtitle"><?= htmlspecialchars($dateStr, ENT_QUOTES, 'UTF-8') ?></p>
-        <?php endif; ?>
+        <h1 class="title">${escapeHtml(title)}</h1>
+        ${dateStr ? `<p class="subtitle">${escapeHtml(dateStr)}</p>` : ""}
       </div>
-
-      <?php if (!empty($serviceChips)): ?>
-        <div class="badgebar"><?= $serviceChips ?></div>
-      <?php endif; ?>
-
+      ${serviceChips ? `<div class="badgebar">${serviceChips}</div>` : ""}
       <div class="section">
         <p class="intro">
           A visitor submitted the contact form on the official Rich Cavagnaro Books website. Review the details below and reply directly to this email to continue the conversation.
@@ -214,29 +165,32 @@ function render_form_email(array $data): string {
         <div class="card">
           <div class="card-h">Inquiry Details</div>
           <table class="table" role="presentation" cellpadding="0" cellspacing="0">
-            <?php foreach ($rows as $r): ?>
-              <tr>
-                <th class="kv-label"><?= htmlspecialchars($r['label'], ENT_QUOTES, 'UTF-8') ?></th>
-                <td><?= $r['value'] ?></td>
-              </tr>
-            <?php endforeach; ?>
+            ${rowsHtml}
           </table>
         </div>
-
       </div>
-
       <div class="footer">
-        Rich Cavagnaro Books &middot; Rory Ruckus and His Very Silly Signs &middot; Generated by richcavagnarobooks.com
+        Rich Cavagnaro Books &middot; Rory Ruckus and His Very Silly Signs &middot; Generated by rory-ruckus.com
       </div>
     </div>
   </div>
 </body>
+</html>`;
+}
 
-</html>
-<?php
-  $out = ob_get_clean();
-  $out = preg_replace('/<!--(?!\[if).*?-->/', '', $out);
-  $out = preg_replace('/>\s+</', '><', $out);
-  $out = preg_replace('/\s{2,}/', ' ', $out);
-  return trim($out);
+export function renderNewsletterEmail({ meta = {}, subscriber = {}, sender = {} }) {
+  const rows = [];
+  if (subscriber.name) rows.push({ label: "Name", value: escapeHtml(subscriber.name) });
+  if (subscriber.email) rows.push({ label: "Email", value: escapeHtml(subscriber.email) });
+  if (meta.source) rows.push({ label: "Source", value: escapeHtml(meta.source) });
+
+  return renderFormEmail({
+    meta: {
+      title: meta.title || "New Newsletter Subscriber",
+      dateStr: meta.dateStr || "",
+      logoUrl: meta.logoUrl || "",
+    },
+    rows,
+    sender,
+  });
 }

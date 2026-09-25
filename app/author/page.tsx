@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "About the Author | Rich Cavagnaro",
     description:
       "Learn more about Rich Cavagnaro, the creative mind behind Rory Ruckus. Discover his journey, fun facts, and what inspired his hilarious storytelling.",
-    url: "https://richcavagnarobooks.com/author",
+    url: "https://rory-ruckus.com/author",
   },
 };
 

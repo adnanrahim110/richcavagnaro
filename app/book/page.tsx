@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: "Rory Ruckus by Rich Cavagnaro | The Book",
     description:
       'Explore "Rory Ruckus", a laugh-out-loud children\'s book full of silly mix-ups and big imaginations.',
-    url: "https://richcavagnarobooks.com/book",
+    url: "https://rory-ruckus.com/book",
   },
 };
 

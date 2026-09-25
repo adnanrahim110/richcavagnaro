@@ -1,0 +1,49 @@
+services:
+  app:
+    image: "${IMAGE_REF:?Set IMAGE_REF to the release image digest}"
+    container_name: rich
+    init: true
+    restart: unless-stopped
+    env_file:
+      - ./app.env
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      SMTP_PASSWORD_FILE: /run/secrets/smtp_password
+    secrets:
+      - smtp_password
+    networks:
+      - proxy
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 1024m
+    cpus: 1.0
+    pids_limit: 256
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.rich.rule=Host(`${APP_DOMAIN:?Set APP_DOMAIN}`) || Host(`www.${APP_DOMAIN}`)
+      - traefik.http.routers.rich.entrypoints=websecure
+      - traefik.http.routers.rich.tls=true
+      - traefik.http.routers.rich.tls.certresolver=le
+      - traefik.http.routers.rich.service=rich
+      - traefik.http.services.rich.loadbalancer.server.port=3000
+      - traefik.http.routers.rich-http.rule=Host(`${APP_DOMAIN}`) || Host(`www.${APP_DOMAIN}`)
+      - traefik.http.routers.rich-http.entrypoints=web
+      - traefik.http.routers.rich-http.middlewares=rich-https
+      - traefik.http.routers.rich-http.service=rich
+      - traefik.http.middlewares.rich-https.redirectscheme.scheme=https
+      - traefik.http.middlewares.rich-https.redirectscheme.permanent=true
+
+networks:
+  proxy:
+    external: true
+
+secrets:
+  smtp_password:
+    file: ./secrets/SMTP_PASSWORD

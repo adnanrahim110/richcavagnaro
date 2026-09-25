@@ -1,6 +1,6 @@
 "use client";
 
-const defaultEndpoint = process.env.NEXT_PUBLIC_ENDPOINT_URL || "/api/sendEmail.php";
+const defaultEndpoint = process.env.NEXT_PUBLIC_ENDPOINT_URL || "/api/sendEmail";
 
 const isFormElement = (value) =>
   typeof window !== "undefined" &&

@@ -25,7 +25,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://richcavagnarobooks.com"),
+  metadataBase: new URL("https://rory-ruckus.com"),
   title: {
     template: "%s | Rich Cavagnaro",
     default: "Rich Cavagnaro | Children's Book Author",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://richcavagnarobooks.com",
+    url: "https://rory-ruckus.com",
     title: "Rich Cavagnaro | Children's Book Author",
     description:
       "The official website of Rich Cavagnaro, author of the hilarious children's book Rory Ruckus.",
